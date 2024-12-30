@@ -52,3 +52,14 @@ def notify_weather(message: str) -> None:
     timeout=60,
     toast=True,
 )
+    
+def main() -> None:
+
+    weather_dict = get_weather()
+    message = format_weather_message(weather_dict)
+    notify_weather(message)
+
+
+if __name__ == "__main__":
+    name = __name__
+    print(name)
