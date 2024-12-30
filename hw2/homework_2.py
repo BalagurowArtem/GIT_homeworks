@@ -15,3 +15,18 @@ UNITS = "metric"
 LANGUAGE = "ru"
 
 # url = rf'https://api.openweathermap.org/data/2.5/weather?q=Чита&appid=23496c2a58b99648af590ee8a29c5348&units=metric&lang=ru'
+
+def get_weather(city:str = CITY, api_key: str = API_KEY, units: str = UNITS, language: str = LANGUAGE) -> dict:
+
+    """
+    Keyword Arguments:
+    city -- (default: {CITY})
+    api_kei --  (default: {API_KEY})
+    units --  (default: {UNITS})
+    language -- (default: {LANGUAGE})
+
+    """
+
+    url: str = rf'https://api.openweathermap.org/data/2.5/weather?q=Чита&appid=23496c2a58b99648af590ee8a29c5348&units=metric&lang=ru'
+    response = requests.get(url)
+    return response.json()
