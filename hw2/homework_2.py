@@ -30,3 +30,15 @@ def get_weather(city:str = CITY, api_key: str = API_KEY, units: str = UNITS, lan
     url: str = rf'https://api.openweathermap.org/data/2.5/weather?q=Чита&appid=23496c2a58b99648af590ee8a29c5348&units=metric&lang=ru'
     response = requests.get(url)
     return response.json()
+
+def format_weather_message(weather_dict: dict) -> str:
+
+   
+    temp = weather_dict["main"]["temp"]
+
+    feels_like = weather_dict["main"]["feels_like"]
+
+    description = weather_dict["weather"][0]["description"]
+
+    return (f'Температура: {temp}°C\nОщущается как: {feels_like}°C\nОписание: {description}')
+
