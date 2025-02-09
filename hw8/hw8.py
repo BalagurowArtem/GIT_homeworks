@@ -131,3 +131,15 @@ class GameManager:
 
             print(f'Компьютер загадал город: {computer_city}')
 
+if __name__ == '__main__':
+    json_file = JsonFile('c:\\Games\\GIT_homeworks\\hw8\\cities.json')
+
+    city_data = json_file.read_data()
+
+    cities_serializer = CitiesSerializer(city_data)
+
+    city_game = CityGame(cities_serializer)
+
+    game_manager = GameManager(json_file, cities_serializer, city_game)
+
+    game_manager()
