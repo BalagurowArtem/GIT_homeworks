@@ -101,3 +101,33 @@ class CityGame:
                 self.used_cities.add(city)
                 return city
         return None
+    
+class GameManager:
+    def __init__(self, json_file: JsonFile, cities_serializer: CitiesSerializer, city_game: CityGame):
+
+        self.json_file = json_file
+
+        self.cities_serializer = cities_serializer
+        self.city_game = city_game
+
+    def __call__(self):
+        self.run_game()
+
+    def run_game(self):
+       print('Начнем игру в "Города"!')
+
+       print(f'Компьютер загадал город: {self.city_game.start_game()}')
+
+       while True:
+            human_city = input('Введите город: ')
+            if not self.city_game.human_turn(human_city):
+                print('Неверный город. Попробуйте снова в следующий раз.')
+                break
+
+            computer_city = self.city_game.computer_turn(human_city)
+            if not computer_city:
+                print("Вы победили машину. Захват человечества откладывается. Поздравляю!")
+                break
+
+            print(f'Компьютер загадал город: {computer_city}')
+
