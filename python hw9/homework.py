@@ -14,3 +14,15 @@ print("Итоговый список:")
 pprint(elements)
 
 # 3
+filtered = {k: i for k, i in full_dict.items() if k in elements}
+pprint(filtered)
+
+# 4
+directors = {i['director'] for i in full_dict.values() if i['director'] != 'TBA' and i['director'] != 'Нет данных'}
+print("Уникальные режиссеры:", directors)
+
+# 6
+films_ch = {k: i for k, i in full_dict.items() if i['title'] and i['title'].startswith('Ч')}
+pprint(films_ch)
+
+# 7
