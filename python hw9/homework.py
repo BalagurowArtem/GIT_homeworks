@@ -26,3 +26,15 @@ films_ch = {k: i for k, i in full_dict.items() if i['title'] and i['title'].star
 pprint(films_ch)
 
 # 7
+sorted_stage = dict(sorted(full_dict.items(), key=lambda item: (item[1].get('stage') if type(item[1].get('stage')) == int else float('inf'))))
+print("по фазе:")
+pprint(dict(list(sorted_stage.items())))
+
+# 8
+sorted_by_stage_title = dict(sorted(full_dict.items(), key=lambda item: (item[1].get('stage', ''), item[1].get('title', '') if type(item[1].get('stage')) == int and type(item[1].get('title')) == int  else float('inf'))))
+print(" по фазе и названию:")
+pprint(dict(list(sorted_by_stage_title.items())))
+
+# 9
+Stage_four = dict(sorted(filter(lambda item: item[1]['stage'] == 'Четвёртая фаза', full_dict.items()), key=lambda item: item[1]['year']))
+pprint(Stage_four)
