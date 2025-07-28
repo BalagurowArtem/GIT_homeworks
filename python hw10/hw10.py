@@ -61,3 +61,28 @@ def password_validator(min_length: int = 8, min_uppercase: int = 1, min_lowercas
         return wrapper
     return decorator
 
+def username_validator(func: Callable):
+  
+    @wraps(func)
+    def wrapper(username: str, password: str, *args, **kwargs) -> Any:
+        if ' ' in username:
+            raise ValueError("Введите имя пользователя без пробелов")
+        return func(username, password, *args, **kwargs)
+    return wrapper
+
+@username_validator
+@password_validator(min_length=10, min_uppercase=2, min_lowercase=2, min_special_chars=2)
+def register_user(username: str, password: str, filename: str = "users.csv") -> None:
+  
+    with open(filename, mode='a', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+
+        if file.tell() == 0:
+            writer.writerow(["Username", "Password"])
+        writer.writerow([username, password])
+
+try:
+    register_user("JohnDoe", "PassWord123+!")
+    print("Регистрация прошла успешно!")
+except ValueError as e:
+    print(f"Ошибка: {e}")
