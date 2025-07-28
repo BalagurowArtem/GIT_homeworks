@@ -38,3 +38,4 @@ pprint(dict(list(sorted_by_stage_title.items())))
 # 9
 Stage_four = dict(sorted(filter(lambda item: item[1]['stage'] == 'Четвёртая фаза', full_dict.items()), key=lambda item: item[1]['year']))
 pprint(Stage_four)
+
