@@ -108,3 +108,48 @@ class CitiesIterator:
         return city
 
 
+def test_cities_iterator():
+    cities_data = [
+        {
+            "coords": {"lat": "52.65", "lon": "90.08333"},
+            "district": "Сибирский",
+            "name": "Абаза",
+            "population": 14816,
+            "subject": "Хакасия"
+        },
+        {
+            "coords": {"lat": "55.75583", "lon": "37.61778"},
+            "district": "Центральный",
+            "name": "Москва",
+            "population": 12655050,
+            "subject": "Москва"
+        },
+        {
+            "coords": {"lat": "53.68333", "lon": "53.65"},
+            "district": "Приволжский",
+            "name": "Абдулино",
+            "population": 17274,
+            "subject": "Оренбургская область"
+        },  
+    ]
+    
+    iterator = CitiesIterator(cities_data)
+    
+    print("Сортировка по возрастанию населения")
+    iterator.set_population_filter(15000)
+    for city in iterator:
+        print(f"{city.name} ({city.population} чел.)")
+    
+    print("Сортировка по убывания населения")
+    iterator.sort_by("population", reverse=True)
+    for city in iterator:
+        print(f"{city.name} ({city.population} чел.)")
+
+    print(" Сортировка по названию")
+    iterator.sort_by("name")
+    for city in iterator:
+        print(f"{city.name} ({city.population} чел.)")
+    
+
+if __name__ == "__main__":
+    test_cities_iterator()
